@@ -15,7 +15,8 @@ namespace CooldownQuickFix
             IPermissionRegistry permissionRegistry,
             IServiceProvider serviceProvider) : base(serviceProvider)
         {
-            permissionRegistry.RegisterPermission(runtime, "cooldowns.immune", "Grants immunity to all command cooldowns.");
+            if (runtime.Version.Major == 3 && runtime.Version.Minor == 0 && runtime.Version.Patch == 17)
+                permissionRegistry.RegisterPermission(runtime, "cooldowns.immune", "Grants immunity to all command cooldowns.");
         }
 
         protected override Task OnLoadAsync()
